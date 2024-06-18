@@ -83,7 +83,7 @@ namespace Carfup.XTBPlugins.AppCode
 
         public Entity PrepareDashboardToMigrate(Entity getDashboardDetails)
         {
-            List<string> attributesList = new List<string> { "formjson", "formxml", "type", "objecttypecode", "name", "description" };
+            List<string> attributesList = new List<string> { "formxml", "type", "objecttypecode", "name", "description" };
 
             if (metadata == null)
                 RetrieveMetadataOfDashboard();
@@ -103,7 +103,7 @@ namespace Carfup.XTBPlugins.AppCode
 
         public Entity ConvertDashboardToSystem(Entity getDashboardDetails)
         {
-            List<string> attributesList = new List<string> { "formjson", "formxml", "type", "objecttypecode", "name", "description" };
+            List<string> attributesList = new List<string> { "formxml", "type", "objecttypecode", "name", "description" };
 
             Entity dashboardToMigrate = new Entity("systemform");
 
@@ -119,7 +119,6 @@ namespace Carfup.XTBPlugins.AppCode
         public Entity GenerateUniqueIDsForSystem(Entity dashboard)
         {
             string outxml = (string)dashboard["formxml"];
-            string outjson = (string)dashboard["formjson"];
             string idPattern = @"\{([a-fA-F0-9]{8}-([a-fA-F0-9]{4}-){3}[a-fA-F0-9]{12})\}";
             string attrPattern = @"( id=""| uniqueid="").*?""";
             string tagPattern = @"[\<](tab |section |cell |control ).*?[\>]";
@@ -132,12 +131,10 @@ namespace Carfup.XTBPlugins.AppCode
                     if (orig.Value != String.Empty)
                     {
                         outxml = outxml.Replace(orig.Value, swap);
-                        outjson = outjson.Replace(orig.Value, swap);
                     }
                 }
             }
             dashboard["formxml"] = outxml;
-            dashboard["formjson"] = outjson;
             return dashboard;
         }
         #endregion Methods

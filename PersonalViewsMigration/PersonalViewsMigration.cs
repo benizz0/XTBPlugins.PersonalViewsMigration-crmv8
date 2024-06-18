@@ -39,7 +39,7 @@ namespace Carfup.XTBPlugins.PersonalViewsMigration
         public LogUsageManager log = null;
         private int currentColumnOrder;
 
-        public string RepositoryName => "XTBPlugins.PersonalViewsMigration";
+        public string RepositoryName => "XTBPlugins.PersonalViewsMigration.V8";
         public string UserName => "carfup";
         public string EmailAccount => "clement@carfup.com";
         public string DonationDescription => "Thanks a lot for your support, this really mean something to me, and push me to keep going for sure ! Long life to Personal User view migration ! =)";
